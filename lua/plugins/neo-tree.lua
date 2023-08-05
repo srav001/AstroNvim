@@ -114,7 +114,7 @@ return {
         end,
       },
       window = {
-        width = 30,
+        position = "float",
         mappings = {
           ["<space>"] = false, -- disable space until we figure out which-key disabling
           ["[b"] = "prev_source",
