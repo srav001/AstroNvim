@@ -95,6 +95,14 @@ return {
             conflict = get_icon "GitConflict",
           },
         },
+        diagnostics = {
+          symbols = {
+            hint = get_icon "DiagnosticHint",
+            info = get_icon "DiagnosticInfo",
+            warn = get_icon "DiagnosticWarn",
+            error = get_icon "DiagnosticError",
+          },
+        },
       },
       commands = {
         system_open = function(state)
