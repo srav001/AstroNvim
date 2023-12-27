@@ -86,7 +86,7 @@ return {
     event = "User AstroFile",
     main = "ibl",
     opts = {
-      indent = { char = "▏" },
+      indent = { char = "▏", repeat_linebreak = false },
       scope = { show_start = false, show_end = false },
       exclude = {
         buftypes = {
