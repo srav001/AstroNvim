@@ -77,9 +77,9 @@ return {
   },
   {
     "NvChad/nvim-colorizer.lua",
-    event = "User AstroFile",
+    event = "UIEnter",
     cmd = { "ColorizerToggle", "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerReloadAllBuffers" },
-    opts = { user_default_options = { names = false } },
+    opts = { filetypes = { "lua", "css" }, tailwind = true, user_default_options = { names = false } },
   },
   {
     "lukas-reineke/indent-blankline.nvim",
