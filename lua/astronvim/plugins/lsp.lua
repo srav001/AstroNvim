@@ -15,12 +15,7 @@ return {
       {
         "williamboman/mason-lspconfig.nvim",
         cmd = { "LspInstall", "LspUninstall" },
-        init = function()
-          require("astrocore").on_load(
-            "mason.nvim",
-            function() require("lazy").load { plugins = { "mason-lspconfig.nvim" } } end
-          )
-        end,
+        init = function(plugin) require("astrocore").on_load("mason.nvim", plugin.name) end,
         opts = function(_, opts)
           if not opts.handlers then opts.handlers = {} end
           opts.handlers[1] = function(server) require("astrolsp").lsp_setup(server) end
@@ -52,12 +47,7 @@ return {
       {
         "jay-babu/mason-null-ls.nvim",
         cmd = { "NullLsInstall", "NullLsUninstall" },
-        init = function()
-          require("astrocore").on_load(
-            "mason.nvim",
-            function() require("lazy").load { plugins = { "mason-null-ls.nvim" } } end
-          )
-        end,
+        init = function(plugin) require("astrocore").on_load("mason.nvim", plugin.name) end,
         opts = { handlers = {} },
       },
     },
@@ -77,7 +67,7 @@ return {
       },
     },
     opts = function()
-      local max_file = require("astrocore").config.features.max_file
+      local max_file = assert(require("astrocore").config.features.max_file)
       return {
         attach_mode = "global",
         backends = { "lsp", "treesitter", "markdown", "man" },

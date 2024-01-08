@@ -6,12 +6,7 @@ return {
     {
       "jay-babu/mason-nvim-dap.nvim",
       dependencies = { "nvim-dap" },
-      init = function()
-        require("astrocore").on_load(
-          "mason.nvim",
-          function() require("lazy").load { plugins = { "mason-nvim-dap.nvim" } } end
-        )
-      end,
+      init = function(plugin) require("astrocore").on_load("mason.nvim", plugin.name) end,
       cmd = { "DapInstall", "DapUninstall" },
       opts = { handlers = {} },
     },
@@ -22,8 +17,8 @@ return {
           "AstroNvim/astrocore",
           opts = function(_, opts)
             local maps = opts.mappings
-            maps.n["<Leader>d"] = opts._map_section.d
-            maps.v["<Leader>d"] = opts._map_section.d
+            maps.n["<Leader>d"] = vim.tbl_get(opts, "_map_sections", "d")
+            maps.v["<Leader>d"] = vim.tbl_get(opts, "_map_sections", "d")
             maps.n["<Leader>dE"] = {
               function()
                 vim.ui.input({ prompt = "Expression: " }, function(expr)
@@ -50,7 +45,7 @@ return {
       "AstroNvim/astrocore",
       opts = function(_, opts)
         local maps = opts.mappings
-        maps.n["<Leader>d"] = opts._map_section.d
+        maps.n["<Leader>d"] = vim.tbl_get(opts, "_map_sections", "d")
         -- modified function keys found with `showkey -a` in the terminal to get key code
         -- run `nvim -V3log +quit` and search through the "Terminal info" in the `log` file for the correct keyname
         maps.n["<F5>"] = { function() require("dap").continue() end, desc = "Debugger: Start" }
