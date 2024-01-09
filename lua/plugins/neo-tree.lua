@@ -128,6 +128,7 @@ return {
           ["<C-j>"] = "move_cursor_down",
           ["<C-k>"] = "move_cursor_up",
         },
+        position = "float",
       },
       filesystem = {
         follow_current_file = { enabled = true },
