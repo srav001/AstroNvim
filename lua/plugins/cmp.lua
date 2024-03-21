@@ -72,8 +72,16 @@ return {
           documentation = cmp.config.window.bordered(border_opts),
         },
         mapping = {
-          ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
-          ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+          ["<Up>"] = cmp.mapping(function(fallback)
+            cmp.close()
+            fallback()
+          end, { "i" }),
+          ["<Down>"] = cmp.mapping(function(fallback)
+            cmp.close()
+            fallback()
+          end, { "i" }),
+          -- ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
+          -- ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
           ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
           ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
           ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
